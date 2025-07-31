@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import EntryTable from "@/components/EntryTable";
 import { useNavigate } from "react-router-dom";
 import Spinner from "@/components/ui/spinner";
-import { Entry } from '../../types/entry.types';
+import type { Entry } from '../../types/entry.types';
+
 
 export default function Home() {
 const [entries, setEntries] = useState<Entry[]>([]);

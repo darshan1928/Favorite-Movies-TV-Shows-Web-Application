@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import api from "@/lib/apiClient";
 import { useNavigate, useParams } from "react-router-dom";
 import LoadingButton from "@/utils/Button";
@@ -36,8 +35,8 @@ export default function CreateOrEdit() {
       const res = await api.get("/entries", { params: { page: 1, limit: 1 } });
       const entry = res.data.entries.find((e: any) => e.id === Number(id));
       if (entry) setForm(entry);
-    } catch (err) {
-      console.error("Failed to load entry");
+    } catch (error: unknown) {
+      console.error("Failed to load entry",error);
     } finally {
       setDataLoading(false);
     }
