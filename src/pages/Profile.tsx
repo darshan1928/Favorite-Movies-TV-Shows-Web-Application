@@ -53,38 +53,40 @@ export default function Profile() {
       {loading ? (
         <Spinner />
       ) : (
-       <div className="max-w-md mx-auto mt-16 bg-white p-8 rounded-lg shadow-lg space-y-6 border border-gray-200">
-  <h2 className="text-2xl font-bold text-gray-800 text-center">Edit Profile</h2>
+        <div className="max-w-md mx-auto mt-16 bg-white p-8 rounded-lg shadow-lg space-y-6 border border-gray-200">
+          <h2 className="text-2xl font-bold text-gray-800 text-center">
+            Edit Profile
+          </h2>
 
-  <div className="space-y-4">
-    <Input
-      name="name"
-      value={form.name}
-      onChange={handleChange}
-      placeholder="Full Name"
-      disabled={loading}
-      className="border-gray-300 focus:ring-2 focus:ring-blue-500"
-    />
-    <Input
-      name="email"
-      value={form.email}
-      onChange={handleChange}
-      placeholder="Email Address"
-      disabled={loading}
-      className="border-gray-300 focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
+          <div className="space-y-4">
+            <Input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              placeholder="Full Name"
+              disabled={loading}
+              className="border-gray-300 focus:ring-2 focus:ring-blue-500"
+            />
+            <Input
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="Email Address"
+              disabled={loading}
+              className="border-gray-300 focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-  <div className="pt-4">
-    <LoadingButton
-      onClick={handleUpdate}
-      loading={loading}
-      text="Update Profile"
-      loadingText="Updating..."
-      className="w-full"
-    />
-  </div>
-</div>
+          <div className="pt-4">
+            <LoadingButton
+              onClick={handleUpdate}
+              loading={loading}
+              text="Update Profile"
+              loadingText="Updating..."
+              className="w-full"
+            />
+          </div>
+        </div>
 
       )}
     </>
