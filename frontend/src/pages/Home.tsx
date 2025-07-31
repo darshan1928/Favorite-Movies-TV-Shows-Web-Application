@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import EntryTable from "@/components/EntryTable";
 import { useNavigate } from "react-router-dom";
 import Spinner from "@/components/ui/spinner";
+import { Entry } from '../../types/entry.types';
 
 export default function Home() {
-  const [entries, setEntries] = useState([]);
+const [entries, setEntries] = useState<Entry[]>([]);
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [page, setPage] = useState(1);
