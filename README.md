@@ -1,69 +1,122 @@
-# React + TypeScript + Vite
+# Favorite Movies & TV Shows Web Application (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend** for the Favorite Movies & TV Shows Web App.
+It allows users to login/signup, add new entries, edit/delete them, and browse through entries with infinite scroll.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Tech Stack
 
-## Expanding the ESLint configuration
+* **React** (via Vite)
+* **TypeScript**
+* **Tailwind CSS**
+* **Shadcn UI** (Radix-based component library)
+* **Axios** (API requests)
+* **React Router DOM** (routing)
+* **React Hot Toast** (notifications)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ⚙️ Setup Instructions
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### 1. Clone the Repository
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone <your-frontend-repo-url>
+cd frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Configure Environment Variables
+
+Create a `.env` file at the root with the following content:
+
+```env
+VITE_API_BASE_URL=https://your-backend-domain/api
+```
+
+Replace `https://your-backend-domain` with your backend URL deployed on Railway (or wherever).
+
+### 4. Run the App
+
+```bash
+npm run dev
+```
+
+Your app should now be running at `http://localhost:5173`
+
+---
+
+## 📅 Features
+
+### ✍️ Authentication
+
+* Signup / Login pages
+* Auth token saved to `localStorage`
+* Protected routes using a layout
+
+### 🔍 Entries Management
+
+* Add/Edit/Delete movies & TV shows
+* Infinite scroll table to browse entries
+* Confirmations for delete actions
+* Responsive, modern UI using Shadcn UI
+
+### 🏠 Pages
+
+* `/signup` - Create account
+* `/login` - Login page
+* `/` - Home (table of entries)
+* `/create` - Add new entry
+* `/edit/:id` - Edit existing entry
+* `/profile` - User profile (optional)
+
+---
+
+## 🔧 Folder Structure
+
+```
+frontend/
+├── public/            # Static assets
+├── src/
+│   ├── components/       # Shared UI components
+│   ├── context/          # Auth context
+│   ├── lib/              # Axios API client
+│   ├── pages/            # Page components
+│   ├── types/            # TypeScript types
+│   ├── App.tsx           # Main app router
+│   └── main.tsx          # App entry point
+└── tailwind.config.js   # TailwindCSS config
+```
+
+
+
+## 📊 API Integration
+
+All API calls are handled via `axios` using a pre-configured instance:
+
+```ts
+import api from "@/lib/apiClient";
+
+api.get("/entries")
+```
+
+Make sure the backend is accessible and CORS is allowed for the frontend domain.
+
+
+
+## 📅 Backend Repo
+
+If you’re looking for the backend:
+
+> [Backend Repo](https://github.com/darshan1928/fav-movies-tv-shows-backend.git) 
+
+---
+
+
+Happy coding! ✨
