@@ -10,10 +10,10 @@ import Home from "./pages/Home";
 import CreateOrEdit from "./pages/CreateOrEdit";
 import ProtectedLayout from "./components/ProtectedLayout";
 import Profile from "./pages/Profile";
-
+import { useAuth } from "@/context/auth-context";
 export default function App() {
-  const isLoggedIn = !!localStorage.getItem("token");
-  console.log("appp");
+const { isLoggedIn } = useAuth();
+
   return (
     <Router>
       <Routes>

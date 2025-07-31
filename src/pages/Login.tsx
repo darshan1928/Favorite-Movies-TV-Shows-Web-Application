@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import api from "@/lib/apiClient";
-import { useNavigate,Link } from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useAuth } from "@/context/auth-context";
 export default function Login() {
+  const { setIsLoggedIn } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ export default function Login() {
   };
 
   const handleSubmit = async () => {
-      if (!form.email || !form.password) {
+    if (!form.email || !form.password) {
       setError("Email and password are required");
       return;
     }
@@ -23,9 +25,13 @@ export default function Login() {
       setLoading(true);
       const res = await api.post("/auth/login", form);
       localStorage.setItem("token", res.data.token);
-      console.log("next redirect");
-      navigate("/");
+      toast.success("Login Success");
+      setIsLoggedIn(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } catch (err: any) {
+      console.log(err.response?.data?.error)
       setError(err.response?.data?.error || "Login failed");
     } finally {
       setLoading(false);
