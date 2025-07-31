@@ -36,7 +36,7 @@ export default function CreateOrEdit() {
       const entry = res.data.entries.find((e: any) => e.id === Number(id));
       if (entry) setForm(entry);
     } catch (error: unknown) {
-      console.error("Failed to load entry",error);
+      console.error("Failed to load entry", error);
     } finally {
       setDataLoading(false);
     }
@@ -119,12 +119,21 @@ export default function CreateOrEdit() {
         value={form.posterUrl}
         onChange={handleChange}
       />
-      <LoadingButton
-        onClick={handleSubmit}
-        loading={loading}
-        text={id ? "Update Entry" : "Create Entry"}
-        loadingText="Saving..."
-      />
+      <div className="flex gap-3">
+        <LoadingButton
+          onClick={handleSubmit}
+          loading={loading}
+          text={id ? "Update Entry" : "Create Entry"}
+          loadingText="Saving..."
+        />
+        <button
+          type="button"
+          onClick={() => navigate("/")}
+          className="border border-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-100 transition"
+        >
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }

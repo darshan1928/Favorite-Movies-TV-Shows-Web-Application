@@ -5,6 +5,7 @@ import api from "@/lib/apiClient";
 import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "@/context/auth-context";
+import LoadingButton from "@/utils/Button";
 export default function Login() {
   const { setIsLoggedIn } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
@@ -31,7 +32,7 @@ export default function Login() {
         navigate("/");
       }, 1000);
     } catch (err: any) {
-      console.log(err.response?.data?.error)
+      console.log(err.response?.data?.error);
       setError(err.response?.data?.error || "Login failed");
     } finally {
       setLoading(false);
@@ -68,14 +69,13 @@ export default function Login() {
 
           {error && <p className="text-sm text-red-500">{error}</p>}
 
-          <Button
-            type="button"
+          <LoadingButton
             onClick={handleSubmit}
+            loading={loading}
+            text="Login"
+            loadingText="Logging in..."
             className="w-full"
-            disabled={loading}
-          >
-            {loading ? "Logging in..." : "Login"}
-          </Button>
+          />
         </form>
 
         <p className="text-sm text-center text-gray-600">

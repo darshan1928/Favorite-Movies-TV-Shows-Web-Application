@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import api from "@/lib/apiClient";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import LoadingButton from "@/utils/Button";
 
 export default function Signup() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -17,9 +18,9 @@ export default function Signup() {
 
   const handleSubmit = async () => {
     if (!form.name || !form.email || !form.password) {
-  setError("All fields are required");
-  return;
-}
+      setError("All fields are required");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -34,7 +35,7 @@ export default function Signup() {
   };
 
   return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-gray-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-gray-100 px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6 border border-gray-200">
         <div className="text-center">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
@@ -69,14 +70,14 @@ export default function Signup() {
 
           {error && <p className="text-sm text-red-500">{error}</p>}
 
-          <Button
-            type="button"
+          <LoadingButton
             onClick={handleSubmit}
+            loading={loading}
+            text="Create Account"
+            loadingText="Creating Account..."
+            disabled={!form.name || !form.email || !form.password}
             className="w-full"
-            disabled={loading || !form.name || !form.email || !form.password}
-          >
-            {loading ? "Creating Account..." : "Create Account"}
-          </Button>
+          />
         </form>
 
         <p className="text-sm text-center text-gray-600">

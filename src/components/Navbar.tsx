@@ -22,7 +22,7 @@ export default function Navbar() {
       </h1>
 
       <div className="flex items-center gap-4">
-        <Avatar onClick={() => navigate("/profile")} className="cursor-pointer">
+        <Avatar onClick={() => navigate("/profile")} title="Profile" className="cursor-pointer">
           <AvatarImage src="https://api.dicebear.com/7.x/initials/svg?seed=U" />
           <AvatarFallback>U</AvatarFallback>
         </Avatar>
