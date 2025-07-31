@@ -23,7 +23,7 @@ It allows users to login/signup, add new entries, edit/delete them, and browse t
 
 ```bash
 git clone <your-frontend-repo-url>
-cd frontend
+cd Favorite-Movies-TV-Shows-Web-Application
 ```
 
 ### 2. Install Dependencies
