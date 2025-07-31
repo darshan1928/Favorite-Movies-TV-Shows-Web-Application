@@ -1,12 +1,10 @@
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import api from "@/lib/apiClient";
-import { useNavigate, Link } from "react-router-dom";
-import toast from "react-hot-toast";
-import { useAuth } from "@/context/auth-context";
-import LoadingButton from "@/utils/Button";
+import { useNavigate,Link } from "react-router-dom";
+
 export default function Login() {
-  const { setIsLoggedIn } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -17,7 +15,7 @@ export default function Login() {
   };
 
   const handleSubmit = async () => {
-    if (!form.email || !form.password) {
+      if (!form.email || !form.password) {
       setError("Email and password are required");
       return;
     }
@@ -25,13 +23,9 @@ export default function Login() {
       setLoading(true);
       const res = await api.post("/auth/login", form);
       localStorage.setItem("token", res.data.token);
-      toast.success("Login Success");
-      setIsLoggedIn(true);
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+
+      navigate("/");
     } catch (err: any) {
-      console.log(err.response?.data?.error);
       setError(err.response?.data?.error || "Login failed");
     } finally {
       setLoading(false);
@@ -68,13 +62,14 @@ export default function Login() {
 
           {error && <p className="text-sm text-red-500">{error}</p>}
 
-          <LoadingButton
+          <Button
+            type="button"
             onClick={handleSubmit}
-            loading={loading}
-            text="Login"
-            loadingText="Logging in..."
             className="w-full"
-          />
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </Button>
         </form>
 
         <p className="text-sm text-center text-gray-600">
